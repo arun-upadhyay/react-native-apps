@@ -1,10 +1,16 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet} from 'react-native';
 
 var Style = StyleSheet.create({
     rootContainer: {
         flex: 1
     },
-
+    displayText: {
+        color: 'white',
+        fontSize: 38,
+        fontWeight: 'bold',
+        textAlign: 'right',
+        padding: 20
+    },
     displayContainer: {
         flex: 2,
         backgroundColor: '#193441'
