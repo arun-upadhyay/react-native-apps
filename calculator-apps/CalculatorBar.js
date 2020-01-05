@@ -4,7 +4,7 @@ import Style from "./Style";
 import InputButton from "./InputButton";
 
 const inputButtons = [
-    ["C", "CE", "%", "/"],
+    ["C", "Back", "%", "/"],
     [1, 2, 3, "+"],
     [4, 5, 6, "*"],
     [7, 8, 9, "-"],
@@ -15,9 +15,8 @@ export default class CalculatorBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            previousInputValue: 0,
-            inputValue: 0,
-            selectedSymbol: null
+            inputValue: null,
+            inputValue2: null
         }
     }
 
@@ -26,6 +25,9 @@ export default class CalculatorBar extends Component {
             <View style={Style.rootContainer}>
                 <View style={Style.displayContainer}>
                     <Text style={Style.displayText}>{this.state.inputValue}</Text>
+                </View>
+                <View style={Style.displayContainer}>
+                    <Text style={Style.displayText}>{this.state.inputValue2}</Text>
                 </View>
                 <View style={Style.inputContainer}>
                     {this._renderInputButtons()}
@@ -65,23 +67,38 @@ export default class CalculatorBar extends Component {
     }
 
     _handleNumberInput(input) {
+
+        let concatValue = this.state.inputValue == null ? input : this.state.inputValue.concat(input);
+        concatValue = concatValue.toString();
         this.setState({
-            inputValue: this.state.inputValue * 10 + input
+            inputValue: concatValue,
+            inputValue2: eval(concatValue).toString()
         })
     }
 
     _handleStringInput(str) {
         switch (str) {
-            case '/':
-            case '*':
-            case '+':
-            case '-':
-                this.setState({
-                    selectedSymbol: str,
-                    previousInputValue: this.state.inputValue,
-                    inputValue: 0
-                });
+            case 'Back':
                 break;
+            case 'C':
+                this.setState({
+                    inputValue: null,
+                    inputValue2: null,
+                })
+                break;
+            case "=":
+                let currentValue = this.state.inputValue2;
+                this.setState({
+                    inputValue: currentValue,
+                    inputValue2: null,
+                })
+                break;
+            default:
+                this.setState({
+                    inputValue2: null,
+                    inputValue: this.state.inputValue.concat(str)
+                })
+
         }
     }
 }
