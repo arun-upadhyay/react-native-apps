@@ -6,7 +6,14 @@ var Style = StyleSheet.create({
     },
     displayText: {
         color: 'white',
-        fontSize: 38,
+        fontSize: 30,
+        fontWeight: 'bold',
+        textAlign: 'right',
+        padding: 20
+    },
+    displayTextSecond: {
+        color: 'white',
+        fontSize: 28,
         fontWeight: 'bold',
         textAlign: 'right',
         padding: 20
