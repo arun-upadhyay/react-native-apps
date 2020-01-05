@@ -70,15 +70,28 @@ export default class CalculatorBar extends Component {
 
         let concatValue = this.state.inputValue == null ? input : this.state.inputValue.concat(input);
         concatValue = concatValue.toString();
-        this.setState({
-            inputValue: concatValue,
-            inputValue2: eval(concatValue).toString()
-        })
+        if (!isNaN(concatValue)) {
+            this.setState({
+                inputValue: concatValue,
+                inputValue2: null
+            })
+        } else {
+            this.setState({
+                inputValue: concatValue,
+                inputValue2: eval(concatValue).toString()
+            })
+        }
+
     }
 
     _handleStringInput(str) {
         switch (str) {
             case 'Back':
+                let currentValue = this.state.inputValue;
+                currentValue = currentValue.substr(0, currentValue.length - 1);
+                 this.setState({
+                    inputValue: currentValue
+                })
                 break;
             case 'C':
                 this.setState({
@@ -87,7 +100,7 @@ export default class CalculatorBar extends Component {
                 })
                 break;
             case "=":
-                let currentValue = this.state.inputValue2;
+                currentValue = this.state.inputValue2;
                 this.setState({
                     inputValue: currentValue,
                     inputValue2: null,
