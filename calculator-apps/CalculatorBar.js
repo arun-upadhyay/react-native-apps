@@ -10,7 +10,7 @@ const inputButtons = [
     [1, 2, 3, "+"],
     [4, 5, 6, "*"],
     [7, 8, 9, "-"],
-    ["+/-", "0", ".", "="]
+    ["+/-", 0, ".", "="]
 ];
 
 export default class CalculatorBar extends Component {
@@ -60,25 +60,29 @@ export default class CalculatorBar extends Component {
     }
 
     _onInputButtonPressed(input) {
-        switch (typeof input) {
-            case 'number':
-                return this._handleNumberInput(input)
-            case 'string':
-                return this._handleStringInput(input)
+        try {
+            switch (typeof input) {
+                case 'number':
+                    return this._handleNumberInput(input)
+                case 'string':
+                    return this._handleStringInput(input)
+            }
+        } catch (e) {
+
         }
     }
 
     _handleNumberInput(input) {
+
         let concatValue = this.state.inputValue == null ? input : this.state.inputValue.concat(input);
         !isNaN(concatValue) ? this._resetState(concatValue.toString(), null)
             : this._resetState(concatValue, this._calculateExpression(concatValue));
     }
 
     _calculateExpression(expression) {
-        console.log("here============")
         let calcResult = eval(expression);
-        if (!Number.isInteger(calcResult)) {
-            calcResult = calcResult.toFixed(5);
+        if (!_.isInteger(calcResult)) {
+            calcResult = _.floor(calcResult, 5);
         }
         return calcResult.toString();
     }
@@ -94,7 +98,7 @@ export default class CalculatorBar extends Component {
         switch (str) {
             case 'Back':
                 let currentValue = this.state.inputValue;
-                if (currentValue === null || currentValue.length === 0 || currentValue.length === 1) {
+                if (_.isNull(currentValue) || currentValue.length === 0 || currentValue.length === 1) {
                     this._resetState();
                     break;
                 }
@@ -119,7 +123,7 @@ export default class CalculatorBar extends Component {
                 break;
             case ".":
                 currentValue = this.state.inputValue;
-                if (currentValue === null || currentValue.length == 0) {
+                if (_.isNull(currentValue) || currentValue.length == 0) {
                     str = "0" + str;
                     this._resetState(str, this.state.inputValue2);
                     break;
@@ -153,7 +157,7 @@ export default class CalculatorBar extends Component {
                 break;
             default:
                 currentValue = this.state.inputValue;
-                if (currentValue === null || currentValue.length == 0) {
+                if (_.isNull(currentValue) || currentValue.length == 0) {
                     break;
                 }
                 characterAtEnd = currentValue.charAt(currentValue.length - 1);
