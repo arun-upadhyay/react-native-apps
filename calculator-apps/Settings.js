@@ -1,12 +1,13 @@
 import React from 'react';
-import {View, Text} from "react-native";
+import {Text, View} from 'react-native';
 
-export default class About extends React.Component {
+
+export default class Settings extends React.Component {
     render() {
         return (
             <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-                <Text>Designed By Arun Upadhyay</Text>
+                <Text>Settings!</Text>
             </View>
-        )
+        );
     }
 }
