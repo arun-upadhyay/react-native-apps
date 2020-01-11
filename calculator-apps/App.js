@@ -18,6 +18,7 @@ class App extends React.Component {
     }
 }
 
+
 const TabNavigator = createBottomTabNavigator({
         'Home': {
             screen: App, navigationOptions: {
@@ -27,7 +28,7 @@ const TabNavigator = createBottomTabNavigator({
                     tabBarIcon: ({tintColor}) => (
                         <Image
                             source={require("./assets/icons-home.png")}
-                            style={{width: 25, height: 25}}
+
                         />
                     )
                 }
