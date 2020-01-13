@@ -17,6 +17,7 @@ const customDrawerComponent = (props) => (
                    }}/>
         </View>
         <ScrollView>
+
             <DrawerItems {...props}/>
         </ScrollView>
     </SafeAreaView>
@@ -28,6 +29,7 @@ const AppDrawerNavigator = createDrawerNavigator({
             screen: WelcomeScreen,
             navigationOptions: {
                 drawerLabel: "Home",
+                drawerIcon: <Icon name="home" size={20} color="blue"></Icon>
 
 
             }
@@ -35,13 +37,15 @@ const AppDrawerNavigator = createDrawerNavigator({
         DashBoardScreen: {
             screen: DashboardScreen,
             navigationOptions: {
-                drawerLabel: "DashBoard"
+                drawerLabel: "DashBoard",
+                drawerIcon: <Icon name="view-dashboard" size={20} color="blue"></Icon>
             }
         },
         Settings: {
             screen: Settings,
             navigationOptions: {
-                drawerLabel: "Settings"
+                drawerLabel: "Settings",
+                drawerIcon: <Icon name="settings" size={20} color="blue"></Icon>
             }
         }
     }, {
