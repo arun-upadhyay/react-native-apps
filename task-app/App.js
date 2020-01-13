@@ -5,19 +5,16 @@ import WelcomeScreen from "./WelcomeScreen";
 import DashboardScreen from "./DashboardScreen";
 import Settings from "./DashboardScreen";
 import {createAppContainer} from "react-navigation";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import MaterialIcon from "react-native-vector-icons/MaterialCommunityIcons";
+import ArtDesignIcon from "react-native-vector-icons/AntDesign";
 
 
 const customDrawerComponent = (props) => (
     <SafeAreaView style={{flex: 1}}>
-        <View style={{height: 150, backgroundColor: 'white'}}>
-            <Image source={require('./assets/mobile-app.png')}
-                   style={{
-                       height: 80, width: 120, borderRadius: 60
-                   }}/>
+        <View style={{height: 120, backgroundColor: 'white', marginTop:30}}>
+            <ArtDesignIcon name="user" size={100} height={100} color="grey"></ArtDesignIcon>
         </View>
         <ScrollView>
-
             <DrawerItems {...props}/>
         </ScrollView>
     </SafeAreaView>
@@ -29,7 +26,7 @@ const AppDrawerNavigator = createDrawerNavigator({
             screen: WelcomeScreen,
             navigationOptions: {
                 drawerLabel: "Home",
-                drawerIcon: <Icon name="home" size={20} color="blue"></Icon>
+                drawerIcon: <MaterialIcon name="home" size={20} color="red"></MaterialIcon>
 
 
             }
@@ -38,14 +35,14 @@ const AppDrawerNavigator = createDrawerNavigator({
             screen: DashboardScreen,
             navigationOptions: {
                 drawerLabel: "DashBoard",
-                drawerIcon: <Icon name="view-dashboard" size={20} color="blue"></Icon>
+                drawerIcon: <MaterialIcon name="view-dashboard" size={20} color="red"></MaterialIcon>
             }
         },
         Settings: {
             screen: Settings,
             navigationOptions: {
                 drawerLabel: "Settings",
-                drawerIcon: <Icon name="settings" size={20} color="blue"></Icon>
+                drawerIcon: <MaterialIcon name="settings" size={20} color="red"></MaterialIcon>
             }
         }
     }, {

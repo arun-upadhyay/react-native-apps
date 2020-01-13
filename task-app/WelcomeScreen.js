@@ -1,23 +1,45 @@
-import React from 'react';
-import {View, Button, StyleSheet, Text} from 'react-native';
-import {Header, Left, Right, Icon} from 'native-base';
+import React, {Component} from 'react';
+import {Container, Header, Left, Body, Right, Button, Icon, Title} from 'native-base';
+import {StyleSheet} from 'react-native';
+import * as Font from 'expo-font';
+import {Ionicons} from '@expo/vector-icons';
+import {AppLoading} from 'expo';
 
+export default class WelcomeScreen extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            isReady: false,
+        };
+    }
 
-export default class WelcomeScreen extends React.Component {
-
+    async componentDidMount() {
+        await Font.loadAsync({
+            Roboto: require('native-base/Fonts/Roboto.ttf'),
+            Roboto_medium: require('native-base/Fonts/Roboto_medium.ttf'),
+            ...Ionicons.font,
+        });
+        this.setState({isReady: true});
+    }
 
     render() {
+        if (!this.state.isReady) {
+            return <AppLoading/>;
+        }
         return (
-            <View style={{flex: 1}}>
+            <Container>
+                <Header style={{marginTop:20}}>
+                    <Left>
+                        <Button transparent>
+                            <Icon name='menu' onPress={() => this.props.navigation.openDrawer()}/>
+                        </Button>
+                    </Left>
+                    <Body>
+                        <Title>Welcome Screen</Title>
+                    </Body>
 
-                <Header>
-                    <Left><Icon name="menu" onPress={() => this.props.navigation.openDrawer()}/></Left>
                 </Header>
-                <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-                    <Text>Welcome</Text>
-                </View>
-
-            </View>
+            </Container>
         );
     }
-};
+}
