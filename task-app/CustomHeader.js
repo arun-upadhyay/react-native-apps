@@ -1,21 +1,35 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import {
-    View,
-    Text,
-    StyleSheet
-} from "react-native";
-
-import {Header, Body, Title, Content, Left, Icon, Right} from 'native-base'
+    Header,
+    Left,
+    Body,
+    Button,
+    Icon,
+    Title,
+    Right,
+} from 'native-base';
 
 class CustomHeader extends Component {
     render() {
         return (
-            <Header>
-                <Left><Icon name="menu" onPress={() => this.props.navigation.openDrawer()}/></Left>
+            <Header style={{marginTop: 20}}>
+                <Left>
+                    <Button transparent>
+                        <Icon name='menu' onPress={() => this.props.navigation.openDrawer()}/>
+                    </Button>
+                </Left>
                 <Body>
-                    <Title>{this.props.title}</Title>
+                    <Title>Dashboard</Title>
                 </Body>
-                <Right/>
+                <Right>
+                    <Button transparent>
+                        <Icon name='search'/>
+                    </Button>
+                    <Button transparent>
+                        <Icon name='more'/>
+                    </Button>
+                </Right>
+
             </Header>
         );
     }

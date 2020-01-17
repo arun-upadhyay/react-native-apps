@@ -1,5 +1,20 @@
 import React, {Component} from 'react';
-import {Container, Header, Left, Body, Right, Button, Icon, Title} from 'native-base';
+import {
+    Container,
+    Header,
+    Left,
+    Body,
+    Content,
+    Button,
+    Icon,
+    Title,
+    Input,
+    Right,
+    Item,
+    Text,
+    Textarea,
+    Form
+} from 'native-base';
 import * as Font from 'expo-font';
 import {Ionicons} from '@expo/vector-icons';
 import {AppLoading} from 'expo';
@@ -27,7 +42,7 @@ export default class DashboardScreen extends Component {
         }
         return (
             <Container>
-                <Header style={{marginTop:20}}>
+                <Header style={{marginTop: 20}}>
                     <Left>
                         <Button transparent>
                             <Icon name='menu' onPress={() => this.props.navigation.openDrawer()}/>
@@ -36,8 +51,31 @@ export default class DashboardScreen extends Component {
                     <Body>
                         <Title>Dashboard</Title>
                     </Body>
+                    <Right>
+                        <Button transparent>
+                            <Icon name='search'/>
+                        </Button>
+                        <Button transparent>
+                            <Icon name='more'/>
+                        </Button>
+                    </Right>
 
                 </Header>
+                <Content padder>
+                    <Form>
+                        <Item>
+                            <Button primary transparent><Text> Save </Text></Button>
+                        </Item>
+                        <Item>
+                            <Text> Uncategorized </Text>
+                        </Item>
+                        <Item>
+                            <Input placeholder="Title"/>
+                        </Item>
+                        <Textarea rowSpan={10} colSpan={50} placeholder="   Notes"/>
+                    </Form>
+                </Content>
+
             </Container>
         );
     }

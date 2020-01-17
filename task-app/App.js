@@ -34,7 +34,7 @@ const AppDrawerNavigator = createDrawerNavigator({
         DashBoardScreen: {
             screen: DashboardScreen,
             navigationOptions: {
-                drawerLabel: "DashBoard",
+                drawerLabel: "Dashboard",
                 drawerIcon: <MaterialIcon name="view-dashboard" size={20} color="red"></MaterialIcon>
             }
         },
